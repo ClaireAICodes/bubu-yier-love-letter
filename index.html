@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>给一二的一封情书 | BuBu & Yier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brown-dark: #8B7355;
+            --brown-light: #A08A6E;
+            --white-warm: #FDFBF7;
+            --panda-black: #2C2C2C;
+            --accent-pink: #F4C2C2;
+            --sage-green: #A8C4A0;
+            --text-main: #4A4A4A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--white-warm);
+            color: var(--text-main);
+            font-family: 'Noto Sans SC', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to bottom, #fdfbf7 0%, #f4e1d2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-illustration {
+            margin-bottom: 2rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        h1 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: var(--brown-dark);
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-weight: 300;
+            color: var(--brown-light);
+            letter-spacing: 0.1em;
+        }
+
+        /* Letter Section */
+        .letter-section {
+            padding: 100px 0;
+            background-color: var(--white-warm);
+        }
+
+        .letter-card {
+            background: white;
+            padding: 60px;
+            border-radius: 40px;
+            box-shadow: 0 20px 40px rgba(139, 115, 85, 0.08);
+            border: 1px solid rgba(160, 138, 110, 0.1);
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .letter-card::before {
+            content: '♥';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: var(--accent-pink);
+        }
+
+        .letter-content {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.15rem;
+            text-align: justify;
+            color: #333;
+            white-space: pre-line;
+        }
+
+        .letter-content b {
+            color: var(--brown-dark);
+            font-size: 1.3rem;
+        }
+
+        /* Interactive Heart Trail */
+        #heart-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            background-color: #f9f7f2;
+            color: var(--brown-light);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .sign-off {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            color: var(--brown-dark);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .letter-card {
+                padding: 40px 20px;
+            }
+            header {
+                height: auto;
+                padding: 100px 0;
+            }
+        }
+
+        /* SVG Styling */
+        .char-svg {
+            width: 200px;
+            height: 200px;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+        }
+    </style>
+</head>
+<body>
+    <canvas id="heart-canvas"></canvas>
+
+    <header>
+        <div class="hero-illustration">
+            <svg class="char-svg" viewBox="0 0 200 200">
+                <!-- BuBu (Bear) -->
+                <circle cx="70" cy="120" r="50" fill="#8B7355" />
+                <circle cx="55" cy="80" r="25" fill="#8B7355" />
+                <circle cx="85" cy="80" r="25" fill="#8B7355" />
+                <circle cx="70" cy="120" r="15" fill="#A08A6E" />
+                <!-- Yier (Panda) -->
+                <circle cx="130" cy="120" r="50" fill="#FFFFFF" stroke="#2C2C2C" stroke-width="3"/>
+                <circle cx="115" cy="80" r="25" fill="#FFFFFF" stroke="#2C2C2C" stroke-width="3"/>
+                <circle cx="145" cy="80" r="25" fill="#FFFFFF" stroke="#2C2C2C" stroke-width="3"/>
+                <circle cx="115" cy="105" r="12" fill="#2C2C2C" />
+                <circle cx="145" cy="105" r="12" fill="#2C2C2C" />
+                <circle cx="130" cy="140" r="15" fill="#2C2C2C" />
+                <!-- Connection -->
+                <path d="M85 110 Q 100 100, 115 110" stroke="#F4C2C2" stroke-width="3" fill="none" stroke-dasharray="4" />
+            </svg>
+        </div>
+        <h1>给一二的一封情书</h1>
+        <p class="subtitle">A Letter from BuBu to Yier</p>
+    </header>
+
+    <main class="container">
+        <section class="letter-section">
+            <article class="letter-card">
+                <div class="letter-content">
+                    亲爱的一二：
+
+                    在这个平凡又闪烁的世界上，我总是被你的灵动所吸引。
+                    你是那一抹跳跃的火花，是偶尔的小小“捣蛋”，
+                    也是我所有心动瞬间的源头。
+
+                    很多人说我是个稳重的“锚”，
+                    总是安静地守在原地，用宽厚的肩膀撑起日常的平淡。
+                    但其实，我之所以选择如此稳重，
+                    是因为我深知你的奔跑是如此自由，
+                    你的每一次跃迁都需要一个最坚定的依靠。
+
+                    我喜欢你偶尔的古灵精怪，
+                    也沉溺于你偶尔流露出的柔软。
+                    你带给我这个世界的颜色，
+                    而我，愿用最温暖的怀抱，接住你所有的欢笑，
+                    也守护你所有的任性。
+
+                    谢谢你闯进我的生活。
+                    因为有你，那些重复的日常变成了最甜的冒险。
+                    无论未来的路在何方，
+                    只要你回头，我一直都在。
+
+                    <br><br>
+                    你的布布 🐻
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>陪伴在每一个细微的瞬间</p>
+            <p class="sign-off">BuBu & Yier</p>
+        </div>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('heart-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let hearts = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Heart {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 10 + 5;
+                this.speedX = Math.random() * 2 - 1;
+                this.speedY = Math.random() * -3 - 1;
+                this.opacity = 1;
+                this.color = `rgb(${244 + Math.random() * 10}, ${194 + Math.random() * 10}, ${194 + Math.random() * 10})`;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.opacity -= 0.01;
+                this.size += 0.1;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                // Simple heart shape
+                const d = this.size;
+                ctx.moveTo(this.x, this.y);
+                ctx.bezierCurveTo(this.x - d/2, this.y - d/2, this.x - d, this.y + d/2, this.x, this.y + d);
+                ctx.bezierCurveTo(this.x + d, this.y + d/2, this.x + d/2, this.y - d/2, this.x, this.y);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hearts.forEach((heart, index) => {
+                heart.update();
+                heart.draw();
+                if (heart.opacity <= 0) {
+                    hearts.splice(index, 1);
+                }
+            });
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            hearts.push(new Heart(e.clientX, e.clientY));
+        });
+
+        // Touch support
+        window.addEventListener('touchmove', (e) => {
+            hearts.push(new Heart(e.touches[0].clientX, e.touches[0].clientY));
+        });
+
+        animate();
+    </script>
+</body>
+</html>
