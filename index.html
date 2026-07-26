@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        :root {
             --brown-dark: #8B7355;
             --brown-light: #A08A6E;
             --white-warm: #FDFBF7;
@@ -16,6 +15,10 @@
             --accent-pink: #F4C2C2;
             --sage-green: #A8C4A0;
             --text-main: #4A4A4A;
+            --official-yellow: #FFD700;
+            --official-pink: #FFB6C1;
+            --official-brown: #D2B48C;
+            --soft-bg: #FFF5EE;
         }
 
         * {
@@ -25,7 +28,7 @@
         }
 
         body {
-            background-color: var(--white-warm);
+            background-color: var(--soft-bg);
             color: var(--text-main);
             font-family: 'Noto Sans SC', sans-serif;
             line-height: 1.8;
@@ -47,14 +50,26 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(to bottom, #fdfbf7 0%, #f4e1d2 100%);
+            background: linear-gradient(to bottom, #FFF5EE 0%, #FFD7CC 100%);
             position: relative;
             overflow: hidden;
         }
 
-        .hero-illustration {
+        .hero-frame {
+            position: relative;
+            padding: 20px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
             margin-bottom: 2rem;
+            border: 8px solid var(--official-pink);
             animation: float 4s ease-in-out infinite;
+        }
+
+        .hero-frame img {
+            border-radius: 40px;
+            max-height: 500px;
+            display: block;
         }
 
         @keyframes float {
@@ -67,6 +82,7 @@
             font-size: clamp(2rem, 8vw, 4rem);
             color: var(--brown-dark);
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
         }
 
         .subtitle {
@@ -114,13 +130,88 @@
             font-size: 1.3rem;
         }
 
-        /* Interactive Heart Trail */
-        #heart-canvas {
+        .scene-element {
+            display: inline-block;
+            margin: 10px 0;
+            height: 40px;
+            vertical-align: middle;
+            opacity: 0.8;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 100px 0;
+            background-color: #fdfbf7;
+            text-align: center;
+        }
+
+        .gallery-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            color: var(--brown-dark);
+            margin-bottom: 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .char-card {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .char-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .char-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 4px solid var(--official-pink);
+        }
+
+        .char-card h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--brown-dark);
+        }
+
+        .char-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Interactive Message */
+        .interactive-msg {
             position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 999;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--official-pink);
+            color: white;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(244, 194, 194, 0.5);
+            display: none;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Footer */
@@ -138,6 +229,138 @@
             color: var(--brown-dark);
         }
 
+        .art-credit {
+            font-size: 0.8rem;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+
+        .art-credit a {
+            color: var(--brown-light);
+            text-decoration: none;
+        }
+
+        /* Scene Elements in Letter */
+        .scene-element {
+            display: block;
+            max-width: 180px;
+            margin: 20px auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .scene-element:hover {
+            transform: scale(1.05) rotate(-1deg);
+            box-shadow: 0 8px 25px rgba(244, 194, 194, 0.4);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #fdfbf7 0%, #f4e1d2 100%);
+        }
+
+        .gallery-title {
+            text-align: center;
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            color: var(--brown-dark);
+            margin-bottom: 40px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .char-card {
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: center;
+        }
+
+        .char-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 115, 85, 0.15);
+        }
+
+        .char-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 4px solid var(--official-pink);
+            object-fit: cover;
+        }
+
+        .char-card h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--brown-dark);
+        }
+
+        .char-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Interactive Message */
+        .interactive-msg {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: var(--official-pink);
+            color: white;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(244, 194, 194, 0.5);
+            display: none;
+            z-index: 1000;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            background-color: #f9f7f2;
+            color: var(--brown-light);
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .sign-off {
+            font-size: 1.5rem;
+            margin-top: 10px;
+            color: var(--brown-dark);
+        }
+
+        .art-credit {
+            font-size: 0.8rem;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+
+        .art-credit a {
+            color: var(--brown-light);
+            text-decoration: none;
+        }
+
         /* Mobile Responsive */
         @media (max-width: 600px) {
             .letter-card {
@@ -147,13 +370,16 @@
                 height: auto;
                 padding: 100px 0;
             }
-        }
-
-        /* SVG Styling */
-        .char-svg {
-            width: 200px;
-            height: 200px;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+            .hero-frame img {
+                max-height: 350px;
+            }
+            .scene-element {
+                max-width: 140px;
+            }
+            .char-card img {
+                width: 120px;
+                height: 120px;
+            }
         }
     </style>
 </head>
@@ -161,25 +387,10 @@
     <canvas id="heart-canvas"></canvas>
 
     <header>
-        <div class="hero-illustration">
-            <svg class="char-svg" viewBox="0 0 200 200">
-                <!-- BuBu (Bear) -->
-                <circle cx="70" cy="120" r="50" fill="#8B7355" />
-                <circle cx="55" cy="80" r="25" fill="#8B7355" />
-                <circle cx="85" cy="80" r="25" fill="#8B7355" />
-                <circle cx="70" cy="120" r="15" fill="#A08A6E" />
-                <!-- Yier (Panda) -->
-                <circle cx="130" cy="120" r="50" fill="#FFFFFF" stroke="#2C2C2C" stroke-width="3"/>
-                <circle cx="115" cy="80" r="25" fill="#FFFFFF" stroke="#2C2C2C" stroke-width="3"/>
-                <circle cx="145" cy="80" r="25" fill="#FFFFFF" stroke="#2C2C2C" stroke-width="3"/>
-                <circle cx="115" cy="105" r="12" fill="#2C2C2C" />
-                <circle cx="145" cy="105" r="12" fill="#2C2C2C" />
-                <circle cx="130" cy="140" r="15" fill="#2C2C2C" />
-                <!-- Connection -->
-                <path d="M85 110 Q 100 100, 115 110" stroke="#F4C2C2" stroke-width="3" fill="none" stroke-dasharray="4" />
-            </svg>
+        <div class="hero-frame">
+            <img src="https://cdn2.cdnstep.com/GdkSADcQLjFuqFcsFfW1/cover-1.thumb256.png" alt="Bubu & Yier Official Artwork">
         </div>
-        <h1>给一二的一封情书</h1>
+        <h1 class="hero-title">给一二的一封情书</h1>
         <p class="subtitle">A Letter from BuBu to Yier</p>
     </header>
 
@@ -189,9 +400,13 @@
                 <div class="letter-content">
                     亲爱的一二：
 
+                    <img class="scene-element" src="https://cdn2.cdnstep.com/GdkSADcQLjFuqFcsFfW1/0-1.thumb128.png" alt="Yier & BuBu scene 1">
+
                     在这个平凡又闪烁的世界上，我总是被你的灵动所吸引。
                     你是那一抹跳跃的火花，是偶尔的小小“捣蛋”，
                     也是我所有心动瞬间的源头。
+
+                    <img class="scene-element" src="https://cdn2.cdnstep.com/GdkSADcQLjFuqFcsFfW1/1-1.thumb128.png" alt="Yier & BuBu scene 2">
 
                     很多人说我是个稳重的“锚”，
                     总是安静地守在原地，用宽厚的肩膀撑起日常的平淡。
@@ -199,11 +414,15 @@
                     是因为我深知你的奔跑是如此自由，
                     你的每一次跃迁都需要一个最坚定的依靠。
 
+                    <img class="scene-element" src="https://cdn2.cdnstep.com/GdkSADcQLjFuqFcsFfW1/2-1.thumb128.png" alt="Yier & BuBu scene 3">
+
                     我喜欢你偶尔的古灵精怪，
                     也沉溺于你偶尔流露出的柔软。
                     你带给我这个世界的颜色，
                     而我，愿用最温暖的怀抱，接住你所有的欢笑，
                     也守护你所有的任性。
+
+                    <img class="scene-element" src="https://cdn2.cdnstep.com/GdkSADcQLjFuqFcsFfW1/3-1.thumb128.png" alt="Yier & BuBu scene 4">
 
                     谢谢你闯进我的生活。
                     因为有你，那些重复的日常变成了最甜的冒险。
@@ -215,14 +434,41 @@
                 </div>
             </article>
         </section>
+
+        <!-- Character Gallery Section -->
+        <section class="gallery-section">
+            <h2 class="gallery-title">认识一二和布布</h2>
+            <div class="gallery-grid">
+                <article class="char-card" data-char="yier">
+                    <img src="https://cdn2.cdnstep.com/GdkSADcQLjFuqFcsFfW1/4-1.thumb128.png" alt="Yier (一二) - 白色小熊猫">
+                    <h3>一二 (Yier)</h3>
+                    <p>🐼 白色小熊猫 · 活泼的火花<br>
+                    顽皮、深情、偶尔爱撒娇<br>
+                    是生活里跳跃的色彩，把平淡变成诗</p>
+                </article>
+                <article class="char-card" data-char="bubu">
+                    <img src="https://cdn2.cdnstep.com/GdkSADcQLjFuqFcsFfW1/5-1.thumb128.png" alt="BuBu (布布) - 棕色小熊">
+                    <h3>布布 (BuBu)</h3>
+                    <p>🐻 棕色小熊 · 温柔的锚<br>
+                    沉稳、包容、默默守护<br>
+                    是风雨里最安心的依靠，接住所有的爱</p>
+                </article>
+            </div>
+        </section>
     </main>
 
     <footer>
         <div class="container">
             <p>陪伴在每一个细微的瞬间</p>
             <p class="sign-off">BuBu & Yier</p>
+            <div class="art-credit">
+                插画来源：<a href="https://huangxiaob.com/" target="_blank" rel="noopener">黄小B (Huang Xiao B)</a> · 
+                官方授权：<a href="https://en.akkogear.com/bubu-dudu-or-yier-bubu-meet-the-real-creator-behind-the-internets-favorite-panda-and-bear/" target="_blank" rel="noopener">Akko x Yier & Bubu</a>
+            </div>
         </div>
     </footer>
+
+    <div class="interactive-msg" id="interactive-msg"></div>
 
     <script>
         const canvas = document.getElementById('heart-canvas');
@@ -290,6 +536,77 @@
         // Touch support
         window.addEventListener('touchmove', (e) => {
             hearts.push(new Heart(e.touches[0].clientX, e.touches[0].clientY));
+        });
+
+        // Interactive character cards & scene elements
+        const messages = {
+            yier: [
+                "一二：「布布！你看我刚学会的魔术！🎩✨」",
+                "一二：「今天也是元气满满的一天呢！☀️」",
+                "一二：「捏捏～布布的脸软软的！🐻」",
+                "一二：「我不许你不理我！🥺」",
+                "一二：「我们要永远永远在一起哦～💕」"
+            ],
+            bubu: [
+                "布布：「一二，慢点跑，小心摔着。🤲」",
+                "布布：「嗯，我在听。你说吧。👂」",
+                "布布：「想吃什么？我去给你买。🛒」",
+                "布布：「别怕，我一直都在。🤗」",
+                "布布：「你是我的宝藏。✨」"
+            ],
+            scene: [
+                "偷偷亲一口～💋",
+                "牵手散步的下午☀️",
+                "一起吃甜甜的冰淇淋🍦",
+                "午后的小确幸☕",
+                "你在，便是安稳🏠"
+            ]
+        };
+
+        function showMessage(text) {
+            const msgEl = document.getElementById('interactive-msg');
+            msgEl.textContent = text;
+            msgEl.style.display = 'block';
+            setTimeout(() => {
+                msgEl.style.display = 'none';
+            }, 3000);
+        }
+
+        // Character cards
+        document.querySelectorAll('.char-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const char = card.dataset.char;
+                const msgs = messages[char];
+                const msg = msgs[Math.floor(Math.random() * msgs.length)];
+                showMessage(msg);
+            });
+            
+            // Keyboard accessibility
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    card.click();
+                }
+            });
+            card.setAttribute('tabindex', '0');
+        });
+
+        // Scene elements in letter
+        document.querySelectorAll('.scene-element').forEach(img => {
+            img.addEventListener('click', () => {
+                const msgs = messages.scene;
+                const msg = msgs[Math.floor(Math.random() * msgs.length)];
+                showMessage(msg);
+            });
+            
+            img.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    img.click();
+                }
+            });
+            img.setAttribute('tabindex', '0');
+            img.style.cursor = 'pointer';
         });
 
         animate();
