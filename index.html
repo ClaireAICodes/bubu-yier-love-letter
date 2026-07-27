@@ -52,9 +52,12 @@
             overflow: hidden;
         }
 
-        .hero-illustration {
+        .hero-sticker {
             margin-bottom: 2rem;
             animation: float 4s ease-in-out infinite;
+            width: 200px;
+            height: 200px;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
         }
 
         @keyframes float {
@@ -148,13 +151,6 @@
                 padding: 100px 0;
             }
         }
-
-        /* SVG Styling */
-        .char-svg {
-            width: 200px;
-            height: 200px;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
-        }
     </style>
 </head>
 <body>
@@ -162,22 +158,7 @@
 
     <header>
         <div class="hero-illustration">
-            <svg class="char-svg" viewBox="0 0 200 200">
-                <!-- BuBu (Bear) -->
-                <circle cx="70" cy="120" r="50" fill="#8B7355" />
-                <circle cx="55" cy="80" r="25" fill="#8B7355" />
-                <circle cx="85" cy="80" r="25" fill="#8B7355" />
-                <circle cx="70" cy="120" r="15" fill="#A08A6E" />
-                <!-- Yier (Panda) -->
-                <circle cx="130" cy="120" r="50" fill="#FFFFFF" stroke="#2C2C2C" stroke-width="3"/>
-                <circle cx="115" cy="80" r="25" fill="#FFFFFF" stroke="#2C2C2C" stroke-width="3"/>
-                <circle cx="145" cy="80" r="25" fill="#FFFFFF" stroke="#2C2C2C" stroke-width="3"/>
-                <circle cx="115" cy="105" r="12" fill="#2C2C2C" />
-                <circle cx="145" cy="105" r="12" fill="#2C2C2C" />
-                <circle cx="130" cy="140" r="15" fill="#2C2C2C" />
-                <!-- Connection -->
-                <path d="M85 110 Q 100 100, 115 110" stroke="#F4C2C2" stroke-width="3" fill="none" stroke-dasharray="4" />
-            </svg>
+            <img class="hero-sticker" src="images/cover.png" alt="BuBu & Yier Official Artwork">
         </div>
         <h1>给一二的一封情书</h1>
         <p class="subtitle">A Letter from BuBu to Yier</p>
